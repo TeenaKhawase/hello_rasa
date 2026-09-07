@@ -4,6 +4,23 @@ A minimal Rasa assistant: say "hello world" and it replies. Everything here
 is rule-based (no LLM calls yet), so it works whether or not your Rasa Pro
 license has arrived.
 
+### Wait — is this the same thing we did in class?
+
+No, and that's on purpose. In class we also build a *different* agent, from
+scratch, like this:
+
+```bash
+uv run rasa init --template tutorial   # Rasa Pro's money-transfer tutorial agent
+```
+
+That one needs a **Rasa Pro license key**. This repo is the backup path: a
+small assistant that is already written for you, runs on Rasa open source,
+and needs **no license and no API key** — so it works on day one even if your
+license email hasn't arrived. Different project, different commands, both fine.
+
+Use the commands in *this* README when you're working in this repo. Use the
+Session 1 Setup Handout when you're building the tutorial agent locally.
+
 ## Quick start — GitHub Codespaces (no install needed)
 
 If the local setup below gives you trouble — especially on Apple Silicon, see the
