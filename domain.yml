@@ -1,0 +1,25 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - ask_hello_world
+  - affirm
+  - deny
+
+responses:
+  utter_greet:
+    - text: "Hey there! I'm your first Rasa assistant. Try saying 'hello world'."
+
+  utter_hello_world:
+    - text: "Hello, World! 🎉 This reply came from domain.yml, matched to your message by an NLU model — no code was written to produce this exact sentence."
+
+  utter_goodbye:
+    - text: "Goodbye! See you in the next class session."
+
+  utter_ask_continue:
+    - text: "Want to try another message?"
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

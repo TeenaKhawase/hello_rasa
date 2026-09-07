@@ -1,0 +1,27 @@
+[project]
+name = "hello-rasa"
+version = "0.1.0"
+description = "Duke Conversational AI — Session 1 Hello World Rasa assistant"
+requires-python = ">=3.10,<3.12"
+dependencies = [
+    "rasa>=3.6.21",
+]
+
+# Session 1 setup:
+#
+# Option A — Rasa Pro Developer Edition (what the course uses from Session 2
+# onward, and free). Request a license key at
+# https://rasa.com/rasa-pro-developer-edition-license-key-request , then:
+#     uv remove rasa
+#     uv add rasa-pro
+#     export RASA_LICENSE="<your license key>"
+#
+# Option B — Rasa open source (no signup needed, works today; this is the
+# default dependency above). Fine for the Session 1 rule-based Hello World.
+# Note: it's a frozen/legacy release (last updated Jan 2025) — Rasa Pro is
+# where active development now happens.
+#     uv add rasa
+#
+# Python: Rasa Pro supports 3.10-3.13, but components that use TensorFlow
+# (the classic NLU pipeline this project's config.yml uses) require <3.12 —
+# stick to 3.10 or 3.11 for this project.

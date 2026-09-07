@@ -1,0 +1,22 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Rasa
+.rasa/
+models/
+*.tar.gz
+
+# Secrets
+.env
+
+
+# Claude Code local state
+.claude/scheduled_tasks.lock

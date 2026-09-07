@@ -1,0 +1,9 @@
+# Uncomment this block only if you add custom Python code in actions/actions.py
+# and run `rasa run actions` in a second terminal.
+#
+# action_endpoint:
+#   url: "http://localhost:5055/webhook"
+
+# Rasa Pro assistants that use an LLM (e.g. for CALM flows in later sessions)
+# read the model provider's API key from an environment variable — see .env.example.
+# No endpoint config is needed here just to set that up.
