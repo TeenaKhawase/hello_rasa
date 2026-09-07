@@ -12,9 +12,13 @@ If the local setup below gives you trouble — especially on Apple Silicon, see 
 1. Click **Use this template ▸ Create a new repository**. Name it `hello_rasa`.
    This is *your* copy, so you're not editing the course repo.
 2. In **your** new repo, click **Code ▸ Codespaces ▸ Create codespace on main**.
-3. Wait ~2-3 minutes while the container builds. It installs Python 3.10 and
-   every dependency for you.
-4. In the Codespace terminal:
+3. **Wait for setup to finish before typing anything — this takes about 5
+   minutes, and VS Code hands you a terminal well before it's done.** The
+   container itself builds in about a minute; installing Rasa (which pulls in
+   TensorFlow) takes several more. You'll know it's finished when a `.venv`
+   folder appears in the file list on the left, and the **GitHub Codespaces**
+   tab in the terminal panel stops printing.
+4. Once setup is done, in the Codespace terminal:
 
    ```bash
    source .venv/bin/activate
@@ -23,6 +27,12 @@ If the local setup below gives you trouble — especially on Apple Silicon, see 
    ```
 
 5. Type `hello world`, `hi`, or `bye`. Press Ctrl-C to exit.
+
+   > **If you see `AttributeError: module 'numpy' has no attribute
+   > 'VisibleDeprecationWarning'`** — you started too early and setup was
+   > still running. Nothing is broken. Wait for `.venv` to appear, then run
+   > the commands again.
+
 6. **Stop your codespace when you're done**, at
    [github.com/codespaces](https://github.com/codespaces) (**⋯ ▸ Stop codespace**).
    An idle codespace keeps consuming your free monthly hours until it times out.
