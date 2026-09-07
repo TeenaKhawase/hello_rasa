@@ -4,6 +4,33 @@ A minimal Rasa assistant: say "hello world" and it replies. Everything here
 is rule-based (no LLM calls yet), so it works whether or not your Rasa Pro
 license has arrived.
 
+## Quick start — GitHub Codespaces (no install needed)
+
+If the local setup below gives you trouble — especially on Apple Silicon, see the
+"Known issue" note near the bottom — skip it entirely and run this in the browser:
+
+1. Click **Use this template ▸ Create a new repository**. Name it `hello_rasa`.
+   This is *your* copy, so you're not editing the course repo.
+2. In **your** new repo, click **Code ▸ Codespaces ▸ Create codespace on main**.
+3. Wait ~2-3 minutes while the container builds. It installs Python 3.10 and
+   every dependency for you.
+4. In the Codespace terminal:
+
+   ```bash
+   source .venv/bin/activate
+   rasa train
+   rasa shell
+   ```
+
+5. Type `hello world`, `hi`, or `bye`. Press Ctrl-C to exit.
+6. **Stop your codespace when you're done**, at
+   [github.com/codespaces](https://github.com/codespaces) (**⋯ ▸ Stop codespace**).
+   An idle codespace keeps consuming your free monthly hours until it times out.
+
+Everything below is the local install, if you'd rather work on your own machine.
+
+---
+
 ## 1. Set up Python with `uv`
 
 This project targets Python 3.10 or 3.11. Rasa Pro itself supports up to 3.13,
