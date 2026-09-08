@@ -12,7 +12,7 @@ responses:
     - text: "Hey there! I'm your first Rasa assistant. Try saying 'hello world'."
 
   utter_hello_world:
-    - text: "Hello, World! 🎉 This reply came from domain.yml, matched to your message by an NLU model — no code was written to produce this exact sentence."
+    - text: "Hello, World! 🎉 This reply came from domain.yml, matched to your message by an NLU model. No code was written to produce this exact sentence."
 
   utter_goodbye:
     - text: "Goodbye! See you in the next class session."
