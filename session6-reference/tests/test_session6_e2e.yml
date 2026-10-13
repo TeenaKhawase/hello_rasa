@@ -1,0 +1,110 @@
+# Session 6 end-to-end test.
+#
+# This is a real, runnable proof that the reference project behaves
+# correctly, not just a description of it. From your project root
+# (with the action server running in its own terminal):
+#
+#   uv run rasa test e2e tests/test_session6_e2e.yml
+#
+# A pass means your training data and actions produce this exact
+# sequence of flows, slots, and bot replies. If your own project fails
+# a step here, the failure message tells you exactly which assertion
+# didn't hold, which is usually faster than re-reading the whole flow
+# by eye.
+
+test_cases:
+  - test_case: e76d777d-7832-4286-a611-786f4987e8fe
+    steps:
+      - user: "/session_start"
+        assertions:
+          - flow_started: "pattern_session_start"
+          - action_executed: "utter_welcome"
+          - bot_uttered:
+              utter_name: "utter_welcome"
+          - flow_completed:
+                flow_id: "pattern_session_start"
+          - action_executed: "action_listen"
+      - user: "hi"
+        assertions:
+          - flow_started: "hello"
+          - action_executed: "utter_hello"
+          - bot_uttered:
+              utter_name: "utter_hello"
+          - flow_completed:
+                flow_id: "hello"
+          - flow_started: "pattern_completed"
+          - flow_completed:
+                flow_id: "pattern_completed"
+          - action_executed: "action_listen"
+      - user: "can you help me to book berlin to munich train ?"
+        assertions:
+          - slot_was_set:
+              - name: "destination"
+                value: "munich"
+          - slot_was_set:
+              - name: "origin"
+                value: "berlin"
+          - flow_started: "search_trains"
+          - flow_started: "pattern_collect_information"
+          - action_executed: "action_run_slot_rejections"
+          - flow_completed:
+                flow_id: "pattern_collect_information"
+          - flow_started: "pattern_collect_information"
+          - action_executed: "action_run_slot_rejections"
+          - flow_completed:
+                flow_id: "pattern_collect_information"
+          - action_executed: "action_search_trains"
+          - slot_was_set:
+              - name: "train_search_result"
+                value: "direct"
+          - action_executed: "utter_direct_found"
+          - bot_uttered:
+              utter_name: "utter_direct_found"
+          - slot_was_set:
+              - name: "origin"
+                value: null
+          - slot_was_set:
+              - name: "destination"
+                value: null
+          - flow_completed:
+                flow_id: "search_trains"
+          - flow_started: "pattern_completed"
+          - flow_completed:
+                flow_id: "pattern_completed"
+          - action_executed: "action_listen"
+      - user: "actually make it Berlin to hamburg"
+        assertions:
+          - slot_was_set:
+              - name: "destination"
+                value: "hamburg"
+          - slot_was_set:
+              - name: "origin"
+                value: "Berlin"
+          - flow_started: "search_trains"
+          - flow_started: "pattern_collect_information"
+          - action_executed: "action_run_slot_rejections"
+          - flow_completed:
+                flow_id: "pattern_collect_information"
+          - flow_started: "pattern_collect_information"
+          - action_executed: "action_run_slot_rejections"
+          - flow_completed:
+                flow_id: "pattern_collect_information"
+          - action_executed: "action_search_trains"
+          - slot_was_set:
+              - name: "train_search_result"
+                value: "direct"
+          - action_executed: "utter_direct_found"
+          - bot_uttered:
+              utter_name: "utter_direct_found"
+          - slot_was_set:
+              - name: "origin"
+                value: null
+          - slot_was_set:
+              - name: "destination"
+                value: null
+          - flow_completed:
+                flow_id: "search_trains"
+          - flow_started: "pattern_completed"
+          - flow_completed:
+                flow_id: "pattern_completed"
+          - action_executed: "action_listen"

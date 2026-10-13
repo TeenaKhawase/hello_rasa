@@ -1,0 +1,43 @@
+# Session 6 domain additions.
+#
+# These are additions to your existing domain, not a replacement for it.
+# Open your project's domain file(s), find the matching top-level key
+# (actions:, slots:, responses:), and merge these entries into the
+# existing block. Do NOT paste a second actions:/slots:/responses: block
+# above or below your current one: YAML only keeps one, silently, and
+# that exact mistake is what caused tonight's own duplicate-key errors
+# (see the README in this folder).
+
+actions:
+  - action_tell_joke
+  - action_search_trains
+
+slots:
+  origin:
+    type: text
+    mappings:
+      - type: from_llm
+  destination:
+    type: text
+    mappings:
+      - type: from_llm
+  train_search_result:
+    type: text
+    mappings: []
+    # set only by ActionSearchTrains, via SlotSet; never filled from user input,
+    # so this slot gets no from_llm mapping (that was a real bug fixed tonight:
+    # see "Wrong slot name or type" in the README)
+
+responses:
+  utter_ask_origin:
+    - text: "Where are you starting from?"
+  utter_ask_destination:
+    - text: "Where would you like to go?"
+  utter_direct_found:
+    - text: "Good news, there's a direct train for that route."
+  utter_no_direct_connection:
+    - text: "There's no direct train, but a connection exists."
+  utter_route_not_found:
+    - text: "I don't have that route in my records."
+  utter_search_error:
+    - text: "Something went wrong looking that up, please try again."

@@ -1,0 +1,35 @@
+# Session 6 reference flow: search_trains.
+#
+# This is the exact, verified syntax: the branching attaches directly to
+# the action step (a standalone step that only branches, with no action
+# or collect of its own, is rejected), and every terminal step in every
+# branch ends with next: END. Both of those were real training errors
+# hit while building this session, see the README in this folder.
+
+flows:
+  search_trains:
+    description: Look up whether a direct train exists between two cities.
+    steps:
+      - collect: origin
+        next: ask_destination
+      - id: ask_destination
+        collect: destination
+        next: run_search
+      - id: run_search
+        action: action_search_trains
+        next:
+          - if: slots.train_search_result == "direct"
+            then:
+              - action: utter_direct_found
+                next: END
+          - if: slots.train_search_result == "indirect"
+            then:
+              - action: utter_no_direct_connection
+                next: END
+          - if: slots.train_search_result == "not_found"
+            then:
+              - action: utter_route_not_found
+                next: END
+          - else:
+              - action: utter_search_error
+                next: END
